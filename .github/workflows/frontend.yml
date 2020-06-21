@@ -8,14 +8,20 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    
     steps:
     - uses: actions/checkout@v2
       
-    - name: build 
-      run: docker-compose up -d
-    
-    - name: check status
-      run: docker-compose ps
-    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+           
     - name: run test
-      run: docker exec test npm test
+      run: | 
+        npm ci
+        npm test
