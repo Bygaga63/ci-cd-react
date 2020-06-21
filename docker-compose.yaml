@@ -21,6 +21,6 @@ services:
       - .:/app                  # пусть контейнер следит за локальными данными для hot reload
     stdin_open: true            # из-за того что я работаю через windows. Без нее контэйнер просто не запускается
     environment:
-      - CI=true
+      # - CI=true
       - CHOKIDAR_USEPOLLING=true
     command: ["npm", "test"]    #переписываем команду Dockerfile
