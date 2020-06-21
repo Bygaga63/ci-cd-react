@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package*.json ./
+RUN npm ci
+#не обязательная команда, можно оставить на всякий случай, если вдруг логика в docker-compose поменяется
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
