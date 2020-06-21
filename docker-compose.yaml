@@ -12,15 +12,15 @@ services:
     stdin_open: true            # из-за того что я работаю через windows. Без нее контэйнер просто не запускается
     environment:
       - CHOKIDAR_USEPOLLING=true # из-за того что я работаю через windows virtual-box для горячей загрузки
-  tests: 
+  test: 
     build: 
       context: .
       dockerfile: Dockerfile.dev
-    container_name: 'test'
     volumes: 
       - /app/node_modules       # использовать node_modules из контейнера
       - .:/app                  # пусть контейнер следит за локальными данными для hot reload
     stdin_open: true            # из-за того что я работаю через windows. Без нее контэйнер просто не запускается
     environment:
+      - CI=true
       - CHOKIDAR_USEPOLLING=true
     command: ["npm", "test"]    #переписываем команду Dockerfile
