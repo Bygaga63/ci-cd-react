@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Test 
+    - name: build 
       run: docker-compose up -d
     
     - name: check status
       run: docker-compose ps
     
-    - name: log result
-      run: docker logs test
+    - name: run test
+      run: docker exec test npm test
