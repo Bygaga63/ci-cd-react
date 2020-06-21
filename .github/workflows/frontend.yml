@@ -14,3 +14,5 @@ jobs:
     - name: Test 
       run: docker-compose up -d
     
+    - name: log result
+      run: docker-compose ps
